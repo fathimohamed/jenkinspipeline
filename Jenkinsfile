@@ -27,13 +27,13 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                        sh "cp -i /home/fathi/Downloads/virginia.pem **/target/*.war ubuntu@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
+                        sh "scp -i /home/ubuntu/virginia.pem **/target/*.war ubuntu@${params.tomcat_dev}:/var/lib/tomcat8/webapps"
                     }
                 }
 
                 stage ("Deploy to Production"){
                     steps {
-                        sh "cp -i /home/fathi/Downloads/virginia.pem **/target/*.war ubuntu@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
+                        sh "scp -i /home/ubuntu/virginia.pem **/target/*.war ubuntu@${params.tomcat_prod}:/var/lib/tomcat8/webapps"
                     }
                 }
             }
