@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                      sh "scp  /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war ubuntu@${params.tomcat_dev}:/home/ubuntu/tomcat/apache-tomcat-8.5.34/webapps/"
+                      sh -o StrictHostKeyChecking=no "scp  /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war ubuntu@${params.tomcat_dev}:/home/ubuntu/tomcat/apache-tomcat-8.5.34/webapps/"
                     }
                 }
 
