@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     parameters {
-         string(name: 'tomcat_dev', defaultValue: '172.31.42.81', description: 'Staging Server')
-         string(name: 'tomcat_prod', defaultValue: '172.31.39.231', description: 'Production Server')
+         string(name: 'tomcat_dev', defaultValue: 'ec2-54-157-0-207.compute-1.amazonaws.com', description: 'Staging Server')
+         string(name: 'tomcat_prod', defaultValue: 'ec2-18-234-116-105.compute-1.amazonaws.com', description: 'Production Server')
     }
 
     triggers {
@@ -27,7 +27,7 @@ stages{
             parallel{
                 stage ('Deploy to Staging'){
                     steps {
-                      sh -o StrictHostKeyChecking=no "scp  /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war ubuntu@${params.tomcat_dev}:/home/ubuntu/tomcat/apache-tomcat-8.5.34/webapps/"
+                      sh "scp  /var/lib/jenkins/workspace/FullyAutomated/webapp/target/webapp.war ubuntu@${params.tomcat_dev}:/home/ubuntu/tomcat/apache-tomcat-8.5.34/webapps/"
                     }
                 }
 
